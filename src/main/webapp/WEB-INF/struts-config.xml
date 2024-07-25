@@ -7,6 +7,7 @@
 
     <form-beans>
         <form-bean name="helloWorldForm" type="com.shpynta.common.form.HelloForm"/>
+        <form-bean name="showCityForm" type="com.shpynta.common.form.ShowCityForm"/>
     </form-beans>
 
     <action-mappings>
@@ -16,6 +17,18 @@
                 type="org.springframework.web.struts.DelegatingActionProxy"
                 parameter="method">
             <forward name="success" path="/success.jsp"/>
+        </action>
+        <action path="/citiesDropdown"
+                type="org.springframework.web.struts.DelegatingActionProxy"
+                parameter="method">
+            <forward name="success" path="/cities-searchable-dropdown.jsp"/>
+        </action>
+        <action path="/showCity"
+                name="showCityForm"
+                input="/cities-searchable-dropdown.jsp"
+                type="org.springframework.web.struts.DelegatingActionProxy"
+                parameter="method">
+            <forward name="success" path="/city-info.jsp"/>
         </action>
     </action-mappings>
 

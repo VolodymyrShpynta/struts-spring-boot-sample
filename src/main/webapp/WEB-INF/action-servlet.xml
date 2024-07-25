@@ -12,4 +12,6 @@
             <ref bean="greetingProvider"/>
         </property>
     </bean>
+    <bean name="/citiesDropdown" class="com.shpynta.common.action.CitiesDropdownAction" scope="request"/>
+    <bean name="/showCity" class="com.shpynta.common.action.ShowCityAction" scope="request"/>
 </beans>
