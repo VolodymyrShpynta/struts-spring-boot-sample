@@ -9,7 +9,7 @@
 <h1>Hello form</h1>
 
 <html:form action="hello.do">
-    NAME: <html:text property="name"/>
+    NAME: <html:text property="name"/> <html:errors/>
     <html:submit value="SayHallo"/>
 </html:form>
 
