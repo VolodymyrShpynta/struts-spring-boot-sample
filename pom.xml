@@ -30,6 +30,17 @@
 
         <!-- struts 1.x -->
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-struts</artifactId>
+            <version>3.2.18.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>struts</groupId>
+                    <artifactId>struts</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts-core</artifactId>
             <version>1.3.10</version>

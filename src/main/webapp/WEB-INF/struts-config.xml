@@ -13,10 +13,15 @@
         <action path="/hello"
                 name="helloWorldForm"
                 input="/index.jsp"
-                type="com.shpynta.common.action.HelloAction">
+                type="org.springframework.web.struts.DelegatingActionProxy"
+                parameter="method">
             <forward name="success" path="/success.jsp"/>
         </action>
     </action-mappings>
 
     <message-resources parameter="messages"/>  <!-- the 'messages.properties' will be used-->
+
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation" value="/WEB-INF/action-servlet.xml"/>
+    </plug-in>
 </struts-config>
