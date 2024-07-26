@@ -2,18 +2,18 @@
 <%@ page import="java.util.List" %>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<script src="jscripts/jquery_2.1.3_min.js"></script>
+<link href="css/select2-4.1.0-rc.0.css" rel="stylesheet" />
+<script src="jscripts/select2-4.1.0-rc.0.full.js"></script>
+<script type = "text/javascript">
+    $(document).ready(function() {
+        $('.select2-dropdown-single').select2();
+    });
+</script>
 
 <html>
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type = "text/javascript">
-        $(document).ready(function() {
-            $('.select2-dropdown-single').select2();
-        });
-    </script>
 </head>
 
 <body>
