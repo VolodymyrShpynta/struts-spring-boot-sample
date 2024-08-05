@@ -23,6 +23,11 @@
                 parameter="method">
             <forward name="success" path="/cities-searchable-dropdown.jsp"/>
         </action>
+        <action path="/citiesCustomDropdown"
+                type="org.springframework.web.struts.DelegatingActionProxy"
+                parameter="method">
+            <forward name="success" path="/custom-searchable-dropdown.jsp"/>
+        </action>
         <action path="/showCity"
                 name="showCityForm"
                 input="/cities-searchable-dropdown.jsp"

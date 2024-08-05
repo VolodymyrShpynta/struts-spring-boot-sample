@@ -19,7 +19,13 @@ public class CitiesDropdownAction extends Action {
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         request.setAttribute("citiesList",
-                asList(labelBean("Kyiv"), labelBean("Berlin"), labelBean("Prague")));
+                asList(labelBean("Kyiv"),
+                        labelBean("Berlin"),
+                        labelBean("Prague"),
+                        labelBean("Paris"),
+                        labelBean("New-York"),
+                        labelBean("Washington")
+                ));
 
         return mapping.findForward("success");
     }

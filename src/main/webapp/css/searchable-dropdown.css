@@ -1,0 +1,104 @@
+body {
+    background: rgb(226, 216, 216);
+    color: #333;
+}
+
+.wrapper {
+    width: 300px;
+}
+
+.select-btn, .options li {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.select-btn {
+    height: 30px;
+    padding: 0 15px;
+    font-size: 18px;
+    background: #fff;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.wrapper.active .select-btn .angle-down {
+    transform: rotate(-180deg);
+}
+
+.select-btn .angle-down {
+    font-weight: 900;
+    padding-top: 10px;
+    transition: transform 0.3s linear;
+}
+
+.content {
+    display: none;
+    margin-top: 5px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.wrapper.active .content {
+    display: block;
+}
+
+.content .search {
+    position: relative;
+}
+
+.select-btn input {
+    height: 30px;
+    width: 100%;
+    font-size: 18px;
+    padding: 4px 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+
+.search input {
+    height: 30px;
+    width: 100%;
+    font-size: 16px;
+    padding: 4px 10px;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #b3b3b3;
+}
+
+.content .options {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 3px;
+}
+
+.options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.options::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 25px;
+}
+
+.options li {
+    height: 30px;
+    padding: 0 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.options li:hover, .options li.selected {
+    background: #f2f2f2;
+}
