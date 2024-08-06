@@ -3,36 +3,42 @@ body {
     color: #333;
 }
 
-.wrapper {
+.searchable-dropdown {
     width: 300px;
 }
 
-.select-btn, .options li {
+.searchable-dropdown[aria-disabled="true"] .searchable-dropdown-select-btn {
+    cursor: not-allowed;
+    background: rgba(0,0,0,0)
+}
+
+.searchable-dropdown-select-btn, .searchable-dropdown-options li {
     display: flex;
     cursor: pointer;
     align-items: center;
 }
 
-.select-btn {
+.searchable-dropdown-select-btn {
     height: 30px;
     padding: 0 15px;
     font-size: 18px;
     background: #fff;
     justify-content: space-between;
     border-radius: 5px;
+    border: 1px solid #939191;
 }
 
-.wrapper.active .select-btn .angle-down {
+.searchable-dropdown.active .searchable-dropdown-select-btn .searchable-dropdown-angle-down {
     transform: rotate(-180deg);
 }
 
-.select-btn .angle-down {
+.searchable-dropdown-select-btn .searchable-dropdown-angle-down {
     font-weight: 900;
     padding-top: 10px;
     transition: transform 0.3s linear;
 }
 
-.content {
+.searchable-dropdown-content {
     display: none;
     margin-top: 5px;
     padding: 10px;
@@ -40,25 +46,15 @@ body {
     border-radius: 5px;
 }
 
-.wrapper.active .content {
+.searchable-dropdown.active .searchable-dropdown-content {
     display: block;
 }
 
-.content .search {
+.searchable-dropdown-content .searchable-dropdown-search {
     position: relative;
 }
 
-.select-btn input {
-    height: 30px;
-    width: 100%;
-    font-size: 18px;
-    padding: 4px 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-}
-
-.search input {
+.searchable-dropdown-search input {
     height: 30px;
     width: 100%;
     font-size: 16px;
@@ -69,7 +65,7 @@ body {
     border: 1px solid #b3b3b3;
 }
 
-.content .options {
+.searchable-dropdown-content .searchable-dropdown-options {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0;
@@ -78,27 +74,27 @@ body {
     padding-right: 3px;
 }
 
-.options::-webkit-scrollbar {
+.searchable-dropdown-options::-webkit-scrollbar {
     width: 8px;
 }
 
-.options::-webkit-scrollbar-track {
+.searchable-dropdown-options::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 25px;
 }
 
-.options::-webkit-scrollbar-thumb {
+.searchable-dropdown-options::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 25px;
 }
 
-.options li {
+.searchable-dropdown-options li {
     height: 30px;
     padding: 0 10px;
     font-size: 18px;
     border-radius: 5px;
 }
 
-.options li:hover, .options li.selected {
+.searchable-dropdown-options li:hover, .searchable-dropdown-options li.selected {
     background: #f2f2f2;
 }
