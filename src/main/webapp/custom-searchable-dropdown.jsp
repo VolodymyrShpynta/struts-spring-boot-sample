@@ -13,17 +13,14 @@
 <h1>Searchable dropdown example</h1>
 
 <html:form action="showCity.do" method="GET">
-    <div class="searchable-dropdown">
-        <div class="searchable-dropdown-select-btn">
-            <span></span>
-            <span class="searchable-dropdown-angle-down">&#xfe40;</span>
+    <div id="cities-dropdown">
+        <div>
             <input type="hidden" name="cityName">
         </div>
-        <div class="searchable-dropdown-content">
-            <div class="searchable-dropdown-search">
+        <div>
+            <div>
                 <input type="text" placeholder="Search..">
             </div>
-            <ul class="searchable-dropdown-options"></ul>
         </div>
     </div>
 
@@ -35,7 +32,7 @@
     <%-- Serialization is required to transfer cities list from the server to the client: --%>
     let cities = <%= JsonUtils.serialize(request.getAttribute("citiesList"))%>;
     cities = cities ? cities : [];
-    initSearchableDropdown(cities);
+    initSearchableDropdown("#cities-dropdown", cities);
 </script>
 </body>
 </html>

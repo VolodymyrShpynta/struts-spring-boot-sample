@@ -26,7 +26,7 @@
 
 <html:form action="showCity.do" method="GET">
     <span class="select">
-        <html:select property="cityName" styleClass="city-searchable-select">
+        <html:select name="showCityForm" property="cityName" styleClass="city-searchable-select">
             <logic:present name="citiesList">
                 <html:option value=""></html:option>
                 <html:options collection="citiesList" property="value" labelProperty="label"/>
