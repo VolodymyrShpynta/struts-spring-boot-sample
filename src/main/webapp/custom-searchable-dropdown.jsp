@@ -27,7 +27,7 @@
 </html:form>
 
 <script type="text/javascript">
-    initSearchableDropdown("#cities-dropdown");
+    new SearchableDropdown("#cities-dropdown");
 </script>
 </body>
 </html>
