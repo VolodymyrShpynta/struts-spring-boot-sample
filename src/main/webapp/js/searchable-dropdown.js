@@ -77,7 +77,8 @@ class SearchableDropdown {
 
     clearSelectedValue() {
         this.#hiddenSourceSelect.value = '';
-        this.#selectedValueLabel.innerText='';
+        this.#selectedValueLabel.innerText = '';
+        this.#searchInput.value = '';
     }
 
     disableDropdown() {
@@ -89,7 +90,7 @@ class SearchableDropdown {
     }
 
     updateDropdown(items) {
-        this.#selectedValueLabel.innerText = '';
+        this.clearSelectedValue();
 
         const options = this.#createOptions(items)
         this.#updateHiddenSelectOptions(options);
@@ -119,6 +120,17 @@ class SearchableDropdown {
         this.#selectButton.addEventListener("click", () => {
             if (this.#getAttribute(this.#dropdownWrapper, "aria-disabled").toLowerCase() !== "true") {
                 this.#dropdownWrapper.classList.toggle(this.#DROPDOWN_ACTIVE_CLASS);
+                //set focus on search input in case of open dropdown:
+                if (this.#dropdownWrapper.classList.contains(this.#DROPDOWN_ACTIVE_CLASS)) {
+                    this.#searchInput.focus();
+                }
+            }
+        });
+
+        //close the dropdown on click mouse outside the dropdown:
+        document.addEventListener("click", mouseEvent => {
+            if (!this.#dropdownWrapper.contains(mouseEvent.target)) {
+                this.#dropdownWrapper.classList.remove(this.#DROPDOWN_ACTIVE_CLASS);
             }
         });
     }
