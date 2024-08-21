@@ -53,6 +53,7 @@
 class SearchableDropdown {
 
     #DROPDOWN_ACTIVE_CLASS = "active";
+    #OPTION_SELECTED_CLASS = "selected";
     #CUSTOM_VALUE_ATTR_NAME = 'customvalue';
 
     #dropdownSelector;
@@ -108,13 +109,20 @@ class SearchableDropdown {
         const allOptions = Array.from(this.#hiddenSourceSelect.options);
         this.#populateSelectOptions(allOptions, allOptions);
 
-        this.#searchInput.addEventListener("keyup", () => {
-            let searchedVal = this.#searchInput.value;
-            const options = Array.from(this.#hiddenSourceSelect.options); //fetch up-to-date options from the hidden select source
-            let filteredOptions = options.filter((option) => {
-                return this.#getLabel(option).toLowerCase().includes(searchedVal.toLowerCase())
-            });
-            this.#populateSelectOptions(filteredOptions, options);
+        this.#searchInput.addEventListener("keyup", keyUpEvent => {
+            if (keyUpEvent.key === "ArrowDown") {
+                this.#highlightNextOption();
+            } else if (keyUpEvent.key === "ArrowUp") {
+                this.#highlightPrevOption();
+            } else { //handle filtering based on search input value
+                this.#filterOptionsAccordingToSearchInput();
+            }
+        });
+
+        //TODO: implement:
+        this.#searchInput.addEventListener("submit", () => {
+            console.log("Key down on search input pressed")
+            return false;
         });
 
         this.#selectButton.addEventListener("click", () => {
@@ -133,6 +141,45 @@ class SearchableDropdown {
                 this.#dropdownWrapper.classList.remove(this.#DROPDOWN_ACTIVE_CLASS);
             }
         });
+    }
+
+    #highlightPrevOption() {
+        const selectedLi = this.#findSelectedLiOption();
+        if (selectedLi) {
+            if (selectedLi.previousElementSibling) {
+                selectedLi.classList.remove(this.#OPTION_SELECTED_CLASS);
+                selectedLi.previousElementSibling.classList.add(this.#OPTION_SELECTED_CLASS);
+            }
+        } else {
+            const liOptions = this.#dropdownOptions.children;
+            if (liOptions && liOptions.length > 0) {
+                liOptions[0].classList.add(this.#OPTION_SELECTED_CLASS);
+            }
+        }
+    }
+
+    #highlightNextOption() {
+        const selectedLi = this.#findSelectedLiOption();
+        if (selectedLi) {
+            if (selectedLi.nextElementSibling) {
+                selectedLi.classList.remove(this.#OPTION_SELECTED_CLASS);
+                selectedLi.nextElementSibling.classList.add(this.#OPTION_SELECTED_CLASS);
+            }
+        } else {
+            const liOptions = this.#dropdownOptions.children;
+            if (liOptions && liOptions.length > 0) {
+                liOptions[0].classList.add(this.#OPTION_SELECTED_CLASS);
+            }
+        }
+    }
+
+    #filterOptionsAccordingToSearchInput() {
+        let searchedVal = this.#searchInput.value;
+        const options = Array.from(this.#hiddenSourceSelect.options); //fetch up-to-date options from the hidden select source
+        let filteredOptions = options.filter((option) => {
+            return this.#getLabel(option).toLowerCase().includes(searchedVal.toLowerCase())
+        });
+        this.#populateSelectOptions(filteredOptions, options);
     }
 
     #initDropdownWrapper() {
@@ -172,15 +219,15 @@ class SearchableDropdown {
         dropdownContent.appendChild(this.#dropdownOptions);
     }
 
-    #populateSelectOptions(showOptions, allOptions, selectedOption) {
+    #populateSelectOptions(showOptions, allOptions) {
         this.#dropdownOptions.innerHTML = "";
         // add items from the collection:
         showOptions.forEach(option => {
-            let isSelected = option.innerText === selectedOption ? "selected" : "";
+            let isSelected = option.innerText === this.#selectedValueLabel.innerText ? this.#OPTION_SELECTED_CLASS : "";
             let li = this.#createLiElement(option, isSelected);
             li.addEventListener("click", () => {
                 this.#updateSelectedValue(allOptions, li);
-            })
+            });
             this.#dropdownOptions.appendChild(li);
         })
     }
@@ -194,10 +241,10 @@ class SearchableDropdown {
 
     #updateSelectedValue(allItems, selectedLi) {
         this.#searchInput.value = "";
-        this.#populateSelectOptions(allItems, allItems, selectedLi.innerText);
         this.#dropdownWrapper.classList.remove(this.#DROPDOWN_ACTIVE_CLASS);
         this.#selectedValueLabel.innerText = selectedLi.innerText;
         this.#hiddenSourceSelect.value = selectedLi.getAttribute(this.#CUSTOM_VALUE_ATTR_NAME);
+        this.#populateSelectOptions(allItems, allItems);
 
         //fire 'change' event:
         let event = new Event('change');
@@ -251,5 +298,9 @@ class SearchableDropdown {
             return this.#hiddenSourceSelect.options[this.#hiddenSourceSelect.selectedIndex].text;
         }
         return '';
+    }
+
+    #findSelectedLiOption() {
+        return this.#dropdownOptions.querySelector('li.selected');
     }
 }
