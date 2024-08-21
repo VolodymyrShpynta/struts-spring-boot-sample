@@ -5,6 +5,13 @@ body {
 
 .searchable-dropdown {
     width: 300px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1; /* Base level */
+}
+
+.searchable-dropdown.active {
+    z-index: 1000; /* Higher z-index when active to appear above other elements */
 }
 
 .searchable-dropdown[aria-disabled="true"] .searchable-dropdown-select-btn {
@@ -35,8 +42,10 @@ body {
 }
 
 .searchable-dropdown-content {
-    display: none;
+    display: none; /* Hide content by default */
+    position: absolute; /* Absolute positioning relative to .searchable-dropdown */
     margin-top: 5px;
+    width: calc(100% - 20px); /* Adjust width to account for padding */
     padding: 10px;
     background: #fff;
     border-radius: 5px;
@@ -64,10 +73,10 @@ body {
 .searchable-dropdown-content .searchable-dropdown-options {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 3px;
     max-height: 150px;
     overflow-y: auto;
-    padding-right: 3px;
 }
 
 .searchable-dropdown-options::-webkit-scrollbar {
