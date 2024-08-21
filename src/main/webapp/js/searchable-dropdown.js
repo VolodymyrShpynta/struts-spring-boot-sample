@@ -16,7 +16,7 @@
        </select>
        <div class="searchable-dropdown-select-btn">
           <span class="searchable-dropdown-selected-value-label"></span>
-          <span class="searchable-dropdown-angle-down">﹀</span>
+          <span class="searchable-dropdown-magnifying-glass">'&#x1F50D;'</span>
        </div>
        <div class="searchable-dropdown-content">
           <div class="searchable-dropdown-search">
@@ -37,7 +37,7 @@
        </select>
        <div class="searchable-dropdown-select-btn">
           <span class="searchable-dropdown-selected-value-label">KYIV</span>
-          <span class="searchable-dropdown-angle-down">﹀</span></div>
+          <span class="searchable-dropdown-magnifying-glass">'&#x1F50D;'</span></div>
        <div class="searchable-dropdown-content">
           <div class="searchable-dropdown-search">
              <input class="" type="text" placeholder="Search..">
@@ -210,7 +210,7 @@ class SearchableDropdown {
 
         this.#selectedValueLabel = this.#createHtmlElement("span", "searchable-dropdown-selected-value-label",
             this.#getSelectedOptionText());
-        const angleDown = this.#createHtmlElement("span", "searchable-dropdown-angle-down", '&#xfe40;');
+        const angleDown = this.#createHtmlElement("span", "searchable-dropdown-magnifying-glass", '&#x1F50D;');
         this.#selectButton.appendChild(this.#selectedValueLabel);
         this.#selectButton.appendChild(angleDown);
     }

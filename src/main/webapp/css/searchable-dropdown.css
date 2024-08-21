@@ -28,13 +28,9 @@ body {
     border: 1px solid #939191;
 }
 
-.searchable-dropdown.active .searchable-dropdown-select-btn .searchable-dropdown-angle-down {
-    transform: rotate(-180deg);
-}
-
-.searchable-dropdown-select-btn .searchable-dropdown-angle-down {
+.searchable-dropdown-select-btn .searchable-dropdown-magnifying-glass {
     font-weight: 900;
-    padding-top: 10px;
+    padding-top: 5px;
     transition: transform 0.3s linear;
 }
 
